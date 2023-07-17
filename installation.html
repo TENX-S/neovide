@@ -78,7 +78,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Neovide</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="features.html"><strong aria-hidden="true">1.</strong> Features</a></li><li class="chapter-item expanded "><a href="installation.html" class="active"><strong aria-hidden="true">2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="configuration.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="command-line-reference.html"><strong aria-hidden="true">4.</strong> Command Line Reference</a></li><li class="chapter-item expanded "><a href="editing-with-external-tools.html"><strong aria-hidden="true">5.</strong> Editing w/ External Tools</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">7.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="maintainer-cookbook.html"><strong aria-hidden="true">8.</strong> Maintainer Cookbook</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Neovide</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="features.html"><strong aria-hidden="true">1.</strong> Features</a></li><li class="chapter-item expanded "><a href="installation.html" class="active"><strong aria-hidden="true">2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="configuration.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="command-line-reference.html"><strong aria-hidden="true">4.</strong> Command Line Reference</a></li><li class="chapter-item expanded "><a href="config-file.html"><strong aria-hidden="true">5.</strong> Config File</a></li><li class="chapter-item expanded "><a href="editing-with-external-tools.html"><strong aria-hidden="true">6.</strong> Editing w/ External Tools</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">7.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">8.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="maintainer-cookbook.html"><strong aria-hidden="true">9.</strong> Maintainer Cookbook</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -229,7 +229,7 @@ bundle:</p>
 <h2 id="linux"><a class="header" href="#linux">Linux</a></h2>
 <h3 id="arch-linux"><a class="header" href="#arch-linux">Arch Linux</a></h3>
 <p>Stable releases are
-<a href="https://archlinux.org/packages/community/x86_64/neovide">packaged in the community repository</a>.</p>
+<a href="https://archlinux.org/packages/extra/x86_64/neovide">packaged in the extra repository</a>.</p>
 <pre><code class="language-sh">pacman -S neovide
 </code></pre>
 <p>To run a development version you can build from
@@ -238,6 +238,15 @@ installed using an AUR helper or
 <a href="https://wiki.archlinux.org/title/Arch_User_Repository#Installing_and_upgrading_packages">by hand in the usual way</a>.
 To build from a non-default branch you can edit the PKGBUILD and add <code>#branch-name</code> to the end of
 the source URL.</p>
+<h3 id="nix"><a class="header" href="#nix">Nix</a></h3>
+<p>Stable releases are packaged in nixpkgs in the <code>neovide</code> package, there's no flake. As such, if you
+just want to try it out in a transient shell, you can use this command.</p>
+<pre><code class="language-sh">nix-shell -p neovide
+</code></pre>
+<h4 id="nixos"><a class="header" href="#nixos">NixOS</a></h4>
+<p>Just add <code>neovide</code> from nixpkgs to your <code>environment.systemPackages</code> in <code>configuration.nix</code>.</p>
+<pre><code class="language-nix">environment.systemPackages = with pkgs; [neovide];
+</code></pre>
 <h3 id="snap"><a class="header" href="#snap">Snap</a></h3>
 <p>Neovide is also available in the Snap Store. You can install it using the command below.</p>
 <pre><code class="language-sh">snap install neovide
