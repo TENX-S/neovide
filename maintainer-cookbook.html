@@ -78,7 +78,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Neovide</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="features.html"><strong aria-hidden="true">1.</strong> Features</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="configuration.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="command-line-reference.html"><strong aria-hidden="true">4.</strong> Command Line Reference</a></li><li class="chapter-item expanded "><a href="config-file.html"><strong aria-hidden="true">5.</strong> Config File</a></li><li class="chapter-item expanded "><a href="editing-with-external-tools.html"><strong aria-hidden="true">6.</strong> Editing w/ External Tools</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">7.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">8.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="maintainer-cookbook.html" class="active"><strong aria-hidden="true">9.</strong> Maintainer Cookbook</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Neovide</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="features.html"><strong aria-hidden="true">1.</strong> Features</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="configuration.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="commands.html"><strong aria-hidden="true">4.</strong> Commands</a></li><li class="chapter-item expanded "><a href="command-line-reference.html"><strong aria-hidden="true">5.</strong> Command Line Reference</a></li><li class="chapter-item expanded "><a href="config-file.html"><strong aria-hidden="true">6.</strong> Config File</a></li><li class="chapter-item expanded "><a href="api.html"><strong aria-hidden="true">7.</strong> API</a></li><li class="chapter-item expanded "><a href="integration-with-external-tools.html"><strong aria-hidden="true">8.</strong> Integration w/ External Tools</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">9.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">10.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="maintainer-cookbook.html" class="active"><strong aria-hidden="true">11.</strong> Maintainer Cookbook</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -243,16 +243,22 @@ been mentioned</li>
 <li>
 <p>Bump the version to match the tag name everywhere</p>
 <ul>
-<li><code>Cargo.toml</code></li>
-<li><code>snap/snapcraft.yaml</code></li>
+<li><code>Cargo.toml</code> (do note it contains the version <em>twice</em>, one time in the
+top, one time at the bottom in the bundling section)</li>
+<li><code>extra/osx/Neovide.app/Contents/Resources/Info.plist</code></li>
 <li><code>website/docs/*.md</code> and update <code>Unreleased yet</code> to <code>Available since $tag</code>
 (where <code>$tag</code> is the tag name)</li>
 </ul>
 </li>
 <li>
-<p>Run <code>cargo build</code> and make sure it succeeds, <strong>remember to <code>git add Cargo.lock</code> to make sure releases stay reproducable
+<p>Run <code>cargo build</code> and make sure it succeeds, <strong>remember to <code>git add Cargo.lock</code> to make sure releases stay reproducible
 (<a href="https://github.com/neovide/neovide/issues/1628">#1628</a>,
 <a href="https://github.com/neovide/neovide/issues/1482">#1482</a>)</strong></p>
+</li>
+<li>
+<p>Check that <code>cargo publish --workspace --dry-run</code> works
+If necessary, you might have to bump the version number for the
+<code>neovide-derive</code> crate as well.</p>
 </li>
 <li>
 <p>Create a commit called <code>Bump version to $tag</code></p>
@@ -267,12 +273,34 @@ been mentioned</li>
 <p>In the meantime, you can look through the previous commits to see if you missed
 anything.</p>
 <ol>
-<li>From the <code>Bump version to $tag</code> commit, download all the artifacts</li>
-<li>Unzip <code>neovide-linux.tar.gz.zip</code> to get <code>neovide.tar.gz</code></li>
-<li>Head to the release draft, edit it and upload the produced artifacts (using
-the unzipped <code>neovide.tar.gz</code> for Linux)</li>
-<li>Hit <code>Publish release</code></li>
-<li>profit</li>
+<li>
+<p>From the <code>Bump version to $tag</code> commit, download all the artifacts</p>
+</li>
+<li>
+<p>Unzip</p>
+<ul>
+<li><code>neovide.AppImage.zip</code></li>
+<li><code>neovide.AppImage.zsync.zip</code></li>
+<li><code>neovide.msi.zip</code></li>
+<li><code>neovide-linux-x86_64.tar.gz.zip</code></li>
+</ul>
+</li>
+<li>
+<p>Head to the release draft, edit it and upload the produced artifacts (using
+the unzipped versions if listed above)</p>
+</li>
+<li>
+<p>Hit <code>Publish release</code></p>
+</li>
+<li>
+<p>profit</p>
+</li>
+<li>
+<p>Publish <code>neovide-derive</code> to crates.io if necessary <code>cargo publish -p neovide-derive</code></p>
+</li>
+<li>
+<p>Publish <code>neovide</code> to crates.io <code>cargo publish -p neovide</code></p>
+</li>
 </ol>
 <p>Phew. Now, announce the new release anywhere you think is appropriate (like
 Reddit, Discord, whatever) <del>and go create a PR in nixpkgs</del>.</p>
