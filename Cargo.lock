@@ -468,6 +468,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "cmake"
+version = "0.1.54"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e7caa3f9de89ddbe2c607f4101924c5abec803763ae9534e4f4d7d8f84aa81f0"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "colorchoice"
 version = "1.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1293,6 +1302,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "libmimalloc3-sys"
+version = "3.1.6-dev3+639b73e.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b34a3ae391b8f788a6dab90e3d67d26687b24adf3239ca6484eed1b211b29439"
+dependencies = [
+ "cmake",
+]
+
+[[package]]
 name = "libredox"
 version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1353,6 +1371,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "483758ad303d734cec05e5c12b41d7e93e6a6390c5e9dae6bdeb7c1259012d28"
 dependencies = [
  "libc",
+]
+
+[[package]]
+name = "mimalloc3-rs"
+version = "0.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2870df3707ca1c4410aabb8a20dbd5e144353d2b86d37c2f62da90cd300ae846"
+dependencies = [
+ "libmimalloc3-sys",
 ]
 
 [[package]]
@@ -1437,6 +1464,7 @@ dependencies = [
  "itertools 0.14.0",
  "log",
  "lru",
+ "mimalloc3-rs",
  "neovide-derive",
  "notify-debouncer-full",
  "num",
