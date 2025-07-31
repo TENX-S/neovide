@@ -45,7 +45,7 @@ tracy-callstack-inlines = ["tracy-client-sys?/callstack-inlines"]
 d3d_debug = []                                                              # Enable the D3D debug layer
 
 [dependencies]
-mimalloc3-rs = "0.0.2"
+mimalloc3-rs = {  version = "0.0.5", features = ["opt_arch"] }
 anyhow = { version = "1.0.95", features = ["backtrace"] }
 approx = "0.5.1"
 async-trait = "0.1.83"
