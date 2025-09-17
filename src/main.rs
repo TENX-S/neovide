@@ -80,6 +80,11 @@ const DEFAULT_BACKTRACES_FILE: &str = "neovide_backtraces.log";
 const BACKTRACES_FILE_ENV_VAR: &str = "NEOVIDE_BACKTRACES";
 const REQUEST_MESSAGE: &str = "This is a bug and we would love for it to be reported to https://github.com/neovide/neovide/issues";
 
+use mimalloc3_rs::MiMalloc;
+
+#[global_allocator]
+static GLOBAL: MiMalloc = MiMalloc;
+
 fn main() -> ExitCode {
     set_hook(Box::new(|panic_info| {
         let backtrace = Backtrace::new();
