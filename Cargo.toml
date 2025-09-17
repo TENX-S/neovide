@@ -45,7 +45,13 @@ tracy-callstack-inlines = ["tracy-client-sys?/callstack-inlines"]
 d3d_debug = []                                                              # Enable the D3D debug layer
 
 [dependencies]
-mimalloc3-rs = {  version = "0.0.5", features = ["opt_arch"] }
+mimalloc3-rs = { path = "../mimalloc3-rs", features = [
+  "static",
+  "override",
+  "use_cxx",
+  "opt_arch",
+  "opt_simd",
+], default-features = false }
 anyhow = { version = "1.0.95", features = ["backtrace"] }
 approx = "0.5.1"
 async-trait = "0.1.83"
@@ -91,11 +97,9 @@ tracy-client-sys = { version = "0.26", optional = true, default-features = false
   "fibers",
 ] }
 unicode-segmentation = "1.12.0"
-which = "8"
-winit = { version = "=0.30.12", features = ["serde"] }
+winit = { version = "=0.30.9", features = ["serde"] }
 xdg = "3"
 notify-debouncer-full = "0.5.0"
-regex = "1.11.1"
 
 [dev-dependencies]
 scoped-env = "2.1.0"
@@ -175,4 +179,4 @@ short_description = "A simple GUI for Neovim."
 long_description = """
 This is a simple graphical user interface for Neovim. Where possible there are some graphical improvements, but it should act functionally like the terminal UI.
 """
-osx_minimum_system_version = "10.11"
+osx_minimum_system_version = "11.0"
